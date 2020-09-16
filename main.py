@@ -18,6 +18,18 @@ def main(list_input, time_interval=4):
     return best_list, sum_max
 
 
+def dp_simple(list_input):
+    acc_ctr = [tmp[1] for tmp in list_input]
+    time = [tmp[0] for tmp in list_input]
+    ctr = [tmp[1] for tmp in list_input]
+    for i in range(0, 10):
+        for j in range(i + 1, 10):
+            if time[j] - time[i] >= 4:
+                acc_ctr[j] = max(acc_ctr[i] + ctr[j], acc_ctr[j])
+    print(acc_ctr)
+    return max(acc_ctr)
+
+
 def check_legal(list_input_check, threshold):
     for i in range(len(list_input_check) - 1):
         if (list_input_check[i + 1][0] - list_input_check[i][0]) < threshold:
@@ -48,6 +60,7 @@ def test():
     list_input.append([20, 0.2])
     list_input.append([22, 0.2])
     print(main(list_input))
+    print(dp_simple(list_input))
 
 
 if __name__ == '__main__':
