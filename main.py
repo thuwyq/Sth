@@ -28,8 +28,8 @@ def get_sum(list_input):
     return np.sum([tmp[1] for tmp in list_input])
 
 
-def test_from_file():
-    with open('', 'r') as f:
+def test_from_file(filepath):
+    with open(filepath, 'r') as f:
         lines = f.readlines()
     return lines
 
