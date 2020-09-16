@@ -3,13 +3,14 @@ import numpy as np
 from itertools import combinations
 
 
-def main(list_input):
+def main(list_input, time_interval=4):
+    assert time_interval != 0
     sum_max = -1
     best_list = None
     print(len(list_input), list_input)
-    for num in range(1, len(list_input) + 1):
+    for num in range(1, int(24/time_interval)):
         for tmp in combinations(list_input, num):
-            if check_legal(tmp):
+            if check_legal(tmp, time_interval):
                 sum_tmp = get_sum(tmp)
                 if sum_tmp > sum_max:
                     best_list = tmp
@@ -17,7 +18,7 @@ def main(list_input):
     return best_list, sum_max
 
 
-def check_legal(list_input_check, threshold=4):
+def check_legal(list_input_check, threshold):
     for i in range(len(list_input_check) - 1):
         if (list_input_check[i + 1][0] - list_input_check[i][0]) < threshold:
             return False
